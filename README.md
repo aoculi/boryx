@@ -4,6 +4,10 @@ A node framework for educational purposes
 
 ## Installation
 
+```console
+npm i boryx
+```
+
 ## Basic Usage
 
 ```js
@@ -18,21 +22,10 @@ Api.get('/', (req, res) => {
 Api.run((opts) => console.log(`App listening on port ${opts.port}`))
 ```
 
-## Step to create a framework
+## Documentation
 
-### Init project
-
-```console
-npm init --yes
-npm i -D prettier
-```
-
-### Install test package (jest and supertest)
-
-```console
-npm i -D jest @types/jest babel-jest @babel/preset-env supertest
-```
+- [Create a NPM package](npm-package.md)
 
 ## License
 
-The Boryx framework is freely distributable under the terms of the [MIT license](LICENSE).
+The Boryx framework is freely distributable under the terms of the [MIT license](LICENSE.md).
