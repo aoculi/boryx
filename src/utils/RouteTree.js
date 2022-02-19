@@ -1,5 +1,5 @@
 import fs from 'fs'
-import path from 'path'
+import * as nodePath from 'path'
 
 export default class RouteTree {
   #routes = []
@@ -27,18 +27,18 @@ export default class RouteTree {
   #getRouteFromFilePath(filePath) {
     let route
 
-    // remove extension
-    route = filePath.replace(path.extname(filePath), '')
+    // Remove extension
+    route = filePath.replace(nodePath.extname(filePath), '')
 
-    // remove original path from route
+    // Remove original path from route
     route = route.replace(this.#originalPath, '')
 
-    // replace /index by /
+    // Replace /index by /
     if (route.endsWith('/index')) {
       route = route.substring(0, route.lastIndexOf('/index'))
     }
 
-    // if empty
+    // If empty
     if (!route) route = '/'
 
     return route
@@ -47,13 +47,20 @@ export default class RouteTree {
   /**
    *
    * @param {string} filePath the route path in the project
-   * @returns {object} { route, params, pattern, filePath, level }
+   * @returns {object} route information based on file path
+   * {
+   *   route: '/users/[id]',
+   *   params: [ {key: 'id', symbol: '[id]'}, {...} ],
+   *   pattern: '/users/(.*?)',
+   *   filePath: './routes/users/[id].js',
+   *   level: 2
+   * }
    */
   #getRouteInfo(filePath) {
-    const route = this.#getRouteFromFilePath(filePath)
-    const findAllMatch = Array.from(route.matchAll(this.#routeParamsRegex))
+    const path = this.#getRouteFromFilePath(filePath)
+    const findAllMatch = Array.from(path.matchAll(this.#routeParamsRegex))
     let params = []
-    let pattern = route
+    let pattern = path
 
     findAllMatch.forEach((item) => {
       pattern = pattern.replace(`[${item[0]}]`, '(.*?)')
@@ -64,11 +71,11 @@ export default class RouteTree {
     })
 
     return {
-      route,
+      path,
       params,
       pattern,
       filePath,
-      level: route.match(/\//g).length,
+      level: path.match(/\//g).length,
     }
   }
 
