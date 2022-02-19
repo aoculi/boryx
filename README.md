@@ -6,13 +6,13 @@ A node framework for educational purposes
 
 ## Basic Usage
 
-```
+```js
 import Boryx from 'boryx'
 
 const Api = new Boryx()
 
 Api.get('/', (req, res) => {
-	res.end(JSON.stringify({ Hello: 'world' }))
+  res.end(JSON.stringify({ Hello: 'world' }))
 })
 
 Api.run((opts) => console.log(`App listening on port ${opts.port}`))
