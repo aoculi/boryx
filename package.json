@@ -1,0 +1,33 @@
+{
+	"name": "boryx",
+	"version": "0.0.1",
+	"description": "A node framework for educational purposes",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"try": "node index.js",
+		"test": "jest"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/aoculi/boryx.git"
+	},
+	"keywords": [
+		"node",
+		"framework"
+	],
+	"author": "Alexis Oculi",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/aoculi/boryx/issues"
+	},
+	"homepage": "https://github.com/aoculi/boryx#readme",
+	"devDependencies": {
+		"@babel/preset-env": "^7.16.11",
+		"@types/jest": "^27.4.0",
+		"babel-jest": "^27.5.1",
+		"jest": "^27.5.1",
+		"prettier": "^2.5.1",
+		"supertest": "^6.2.2"
+	}
+}
