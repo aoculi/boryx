@@ -2,10 +2,23 @@
   "name": "boryx",
   "version": "0.0.1",
   "description": "A node framework for educational purposes",
-  "main": "index.js",
   "type": "module",
+  "exports": {
+    "import": "./index.js",
+    "require": "./dist/Boryx.cjs"
+  },
   "scripts": {
+    "build:clean": "rm -rf dist && mkdir dist",
+    "build:run": "babel src/Boryx.js -s --out-file dist/Boryx.cjs",
+    "build": "npm run build:clean && npm run build:run",
+    "lint:format": "prettier --write .",
+    "prepublishOnly": "npm run build && lint:format",
     "test": "jest"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint:format"
+    }
   },
   "repository": {
     "type": "git",
@@ -22,9 +35,14 @@
   },
   "homepage": "https://github.com/aoculi/boryx#readme",
   "devDependencies": {
+    "@babel/cli": "^7.17.3",
+    "@babel/core": "^7.17.5",
+    "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
     "@types/jest": "^27.4.0",
     "babel-jest": "^27.5.1",
+    "babel-plugin-add-module-exports": "^1.0.4",
+    "husky": "^7.0.4",
     "jest": "^27.5.1",
     "prettier": "^2.5.1",
     "supertest": "^6.2.2"
