@@ -1,13 +1,13 @@
 import http from 'http'
 import request from 'supertest'
-import Boryx from './Boryx.js'
+import Boryx from './Boryx'
 
 describe('Boryx', () => {
   describe('Routes', () => {
     it('should return one route', () => {
       const app = new Boryx()
 
-      const callback = (req, res) => {
+      const callback = () => {
         // do nothing
       }
 
@@ -53,6 +53,7 @@ describe('Boryx', () => {
 
       spyCreateServer = jest
         .spyOn(http, 'createServer')
+        // @ts-ignore
         .mockImplementation(() => ({
           listen: onListen,
           close: onClose,
@@ -73,6 +74,7 @@ describe('Boryx', () => {
 
       spyCreateServer = jest
         .spyOn(http, 'createServer')
+        // @ts-ignore
         .mockImplementation(() => ({
           listen: onListen,
         }))

@@ -1,10 +1,5 @@
 # Create a NPM package
 
-## Before starting
-
-In this documentation, the code is written in pure ES6 Javascript. In order to allow users to fetch the library with **require**, we compile the code thanks to a collection of babel plugins.
-In a future version, the code will be directly written in typescript, so the compilation will be easier.
-
 ## Prerequisites
 
 - Ensure you've installed Node.js and npm on your machine.
@@ -16,28 +11,45 @@ In a future version, the code will be directly written in typescript, so the com
 npm init
 ```
 
+## Install packages to manage typescript
+
+```console
+npm i -D typescript @types/node
+npx tsc --init
+```
+
+The npx command will create a default tsconfig.json file.
+We need to update the file, in compilerOptions we add a rule to have a dedicated ile with all our types:
+
+- "declaration": true
+- "outDir": "./dist"
+
+We also need to define include and exclude rules at the root:
+
+- "include": ["./src/"],
+- "exclude": ["./node_modules", "**/*.spec.ts"]
+
 ## Install packages to manage tests (jest and supertest)
 
 ```console
-npm i -D jest @types/jest supertest
+npm i -D jest @types/jest supertest @types/supertest ts-jest
+npx ts-jest config:init
 ```
 
-## Install (a lot of) babel packages to transpile ES6 to ES5
-
-```console
-npm i -D babel-jest @babel/preset-env @babel/cli @babel/core @babel/plugin-transform-runtime babel-plugin-add-module-exports
-```
-
-To transpile the code in ES5, create a "**babel.config.cjs**" file to the root of the project with this content:
+The npx command will create a jest.config.js file which will look like this:
 
 ```js
+/** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
 module.exports = {
-  presets: [['@babel/preset-env']],
-  plugins: [['@babel/transform-runtime'], ['add-module-exports']],
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+  globals: {
+    'ts-jest': {
+      diagnostics: false,
+    },
+  },
 }
 ```
-
-This config file will be used by Jest and the build command.
 
 ## Install some dev dependencies
 
