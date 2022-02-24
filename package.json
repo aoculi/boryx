@@ -12,7 +12,7 @@
     "build:run": "babel src/Boryx.js -s --out-file dist/Boryx.cjs",
     "build": "npm run build:clean && npm run build:run",
     "lint:format": "prettier --write .",
-    "prepublishOnly": "npm run build && lint:format",
+    "prepublishOnly": "npm run build && npm run lint:format",
     "test": "jest"
   },
   "husky": {
