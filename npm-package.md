@@ -80,16 +80,12 @@ package-lock.json
 
 ```json
   "type": "module",
-  "exports": {
-    "import": "./index.js",
-    "require": "./dist/SuperPackage.cjs"
-  },
+  "types": "dist/index.d.ts",
   "scripts": {
     "build:clean": "rm -rf dist && mkdir dist",
-    "build:run": "babel src/SuperPackage.js -s --out-file dist/SuperPackage.cjs",
-    "build": "npm run build:clean && npm run build:run",
+    "build": "npm run build:clean && tsc",
     "lint:format": "prettier --write .",
-    "prepublishOnly": "npm run build && lint:format",
+    "prepublishOnly": "npm run build && npm run lint:format",
     "test": "jest"
   },
   "husky": {

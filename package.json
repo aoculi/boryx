@@ -8,7 +8,7 @@
     "build:clean": "rm -rf dist && mkdir dist",
     "build": "npm run build:clean && tsc",
     "lint:format": "prettier --write .",
-    "prepublishOnly": "npm run build && lint:format",
+    "prepublishOnly": "npm run build && npm run lint:format",
     "test": "jest"
   },
   "husky": {
