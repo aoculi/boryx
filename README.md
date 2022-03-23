@@ -25,6 +25,7 @@ Api.run((opts) => console.log(`App listening on port ${opts.port}`))
 ## Documentation
 
 - [Create a NPM package](npm-package.md)
+- [Basic Typescript types](types.md)
 
 ## License
 
