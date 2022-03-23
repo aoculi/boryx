@@ -82,8 +82,10 @@ const move: Move = (s: number) => {
 ```typescript
 interface ClockInterface {
   currentTime: Date
+  updateTime: (date: Date) => Date
 }
 class Clock implements ClockInterface {
   currentTime: Date = new Date()
+  updateTime = (date: Date) => date
 }
 ```
